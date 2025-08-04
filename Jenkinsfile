@@ -22,9 +22,8 @@ pipeline {
 GIT_SHORT_COMMIT=$(echo $GIT_COMMIT | cut -c 1-7)
 
 # Set the version using Maven
-mvn version:set -DnewVersion="$GIT_SHORT_COMMIT"
-mvn version:commit
-'''
+mvn versions:set -DnewVersion="$GIT_SHORT_COMMIT"
+mvn versions:commit'''
         sh 'mvn package -DskipTests'
         archiveArtifacts '**/target/*.jar'
       }
